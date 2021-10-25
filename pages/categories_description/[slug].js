@@ -22,7 +22,10 @@ const socialIcons = [
   },
 ];
 
-export default function CategoryDetails() {
+export default function CategoryDetails({categoryDetails, slug}) {
+    console.log(categoryDetails,"DETAILS");
+
+    console.log(slug,"SLUG");
   const [copied, setCopied] = React.useState(false);
 
   function copy() {
@@ -57,3 +60,26 @@ export default function CategoryDetails() {
     </>
   );
 }
+
+
+export async function getServerSideProps(ctx) {
+    var propsData = {
+      categoryDetails: "",
+      slug: "",
+     
+    };
+    // CATEGORY DATA
+    let slug = ctx["query"]["slug"];
+    propsData.slug = slug;
+  
+    const categoryDetailsResp = await getDetailAxios("getArticleData", null, slug);
+    if (categoryDetailsResp && categoryDetailsResp.data) {
+      propsData.categoryDetails = categoryDetailsResp.data;
+    }
+  
+    
+  
+    return { props: propsData };
+  }
+  
+  export default CategoryDetails;

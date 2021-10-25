@@ -1,3 +1,5 @@
+import { getDetailAxios } from "../utils/requests";
+import Link from "next/link";
 const imageGridData = [
   { id: 0, src: "/images/logo.png", title: "" },
   { id: 1, src: "/images/romance.png", title: "Romance" },
@@ -15,15 +17,37 @@ const imageGridData = [
   { id: 13, src: "/images/explore.png", title: "" },
 ];
 
-export default function Home() {
+function Home({ categoryData }) {
+  console.log(categoryData, "category data");
   return (
     <div className="image-grid">
       {imageGridData.map((k) => (
         <div key={k.id} id={"item-" + k.id}>
-          <img className="img-src" src={k.src} alt={k.title} />
+          <Link href={k.id === 13 ? "/categories" : "/"}>
+            <img className="img-src" src={k.src} alt={k.title} />
+          </Link>
           <h3 className="image-title">{k.title}</h3>
         </div>
       ))}
     </div>
   );
 }
+
+export async function getServerSideProps(ctx) {
+  var propsData = {
+    categoryData: [],
+  };
+  const categoryResp = await getDetailAxios(
+    "categoryData",
+    null,
+    `?offset=${8}&limit=${8}`
+  );
+  if (categoryResp && categoryResp.data) {
+    propsData.categoryData = categoryResp.data;
+  }
+
+  return {
+    props: propsData,
+  };
+}
+export default Home;
