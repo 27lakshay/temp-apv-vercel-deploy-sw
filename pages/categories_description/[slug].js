@@ -23,9 +23,9 @@ const socialIcons = [
 ];
 
 export default function CategoryDetails({categoryDetails, slug}) {
-    console.log(categoryDetails,"DETAILS");
+    // console.log(categoryDetails,"DETAILS");
 
-    console.log(slug,"SLUG");
+    // console.log(slug,"SLUG");
   const [copied, setCopied] = React.useState(false);
 
   function copy() {

@@ -18,7 +18,7 @@ const imageGridData = [
 ];
 
 function Home({ categoryData }) {
-  console.log(categoryData, "category data");
+  // console.log(categoryData, "category data");
   return (
     <div className="image-grid">
       {imageGridData.map((k) => (
