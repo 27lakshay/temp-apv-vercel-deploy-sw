@@ -1,4 +1,4 @@
-import { getDetailAxios } from "../utils/requests";
+import { getDetailAxios } from "../utils/requests"; 
 import Link from "next/link";
 const imageGridData = [
   { id: 0, src: "/images/logo.png", title: "" },
