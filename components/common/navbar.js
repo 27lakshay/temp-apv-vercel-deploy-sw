@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Navbar() {
+export default function Navbar({ title }) {
     return (
         <nav className="navbar">
             <Link href="/">
@@ -8,7 +8,7 @@ export default function Navbar() {
                     <img src="/images/logo.png" />
                 </span>
             </Link>
-            <span className="navbar-title">Categories</span>
+            {title && <span className="navbar-title">{title}</span>}
             <span className="navbar-options">
                 <ul className="options-socials">
                     <li>

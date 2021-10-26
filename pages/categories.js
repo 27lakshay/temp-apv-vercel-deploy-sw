@@ -1,5 +1,7 @@
 import CategoryCard from "../components/categories/categoryCard";
 import { getDetailAxios } from "../utils/requests";
+import Navbar from "../components/common/navbar";
+import Footer from "../components/common/footer";
 
 export default function Categories(props) {
     const dummyData = [
@@ -19,50 +21,54 @@ export default function Categories(props) {
         { id: 13, src: "/images/explore.png", title: "" },
     ];
     return (
-        <div className="wrapper-container categories-wrapper">
-            {dummyData.map((item) => (
-                <CategoryCard data={item} />
-            ))}
-            <style jsx>
-                {`
-                    .categories-wrapper {
-                        display: grid;
-                        grid-template-columns: repeat(2, minmax(0, 1fr));
-                        grid-auto-rows: 140px;
-                        gap: 12px;
-                        padding: 1em 0;
-                    }
-                    @media (min-width: 640px) {
+        <>
+            <Navbar title="Categories" />
+            <main className="wrapper-container categories-wrapper">
+                {dummyData.map((item) => (
+                    <CategoryCard data={item} />
+                ))}
+                <style jsx>
+                    {`
                         .categories-wrapper {
-                            grid-template-columns: repeat(3, minmax(0, 1fr));
-                            grid-auto-rows: 160px;
-                            gap: 16px;
+                            display: grid;
+                            grid-template-columns: repeat(2, minmax(0, 1fr));
+                            grid-auto-rows: 140px;
+                            gap: 12px;
+                            padding: 1em 0;
                         }
-                    }
-                    @media (min-width: 1024px) {
-                        .categories-wrapper {
-                            grid-template-columns: repeat(4, minmax(0, 1fr));
-                            grid-auto-rows: 220px;
-                            gap: 20px;
+                        @media (min-width: 640px) {
+                            .categories-wrapper {
+                                grid-template-columns: repeat(3, minmax(0, 1fr));
+                                grid-auto-rows: 160px;
+                                gap: 16px;
+                            }
                         }
-                    }
-                    @media (min-width: 1600px) {
-                        .categories-wrapper {
-                            grid-template-columns: repeat(5, minmax(0, 1fr));
-                            grid-auto-rows: 240px;
-                            gap: 24px;
+                        @media (min-width: 1024px) {
+                            .categories-wrapper {
+                                grid-template-columns: repeat(4, minmax(0, 1fr));
+                                grid-auto-rows: 220px;
+                                gap: 20px;
+                            }
                         }
-                    }
-                    @media (min-width: 1920px) {
-                        .categories-wrapper {
-                            grid-template-columns: repeat(5, minmax(0, 1fr));
-                            grid-auto-rows: auto;
-                            gap: 24px;
+                        @media (min-width: 1600px) {
+                            .categories-wrapper {
+                                grid-template-columns: repeat(5, minmax(0, 1fr));
+                                grid-auto-rows: 240px;
+                                gap: 24px;
+                            }
                         }
-                    }
-                `}
-            </style>
-        </div>
+                        @media (min-width: 1920px) {
+                            .categories-wrapper {
+                                grid-template-columns: repeat(5, minmax(0, 1fr));
+                                grid-auto-rows: auto;
+                                gap: 24px;
+                            }
+                        }
+                    `}
+                </style>
+            </main>
+            <Footer />
+        </>
     );
 }
 export async function getServerSideProps(ctx) {
